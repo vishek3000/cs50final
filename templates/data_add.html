@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Data
+{% endblock %}
+
+{% block main %}
+<h1>Add your data, {{username}}.</h1>
+<p>Here you can select to add new data (from today's date) or historical data.</p>
+<br>
+<div>
+    <form method="get" action="/addgoal">
+        <button class="btn btn-primary" type="submit">Add New Data</button>
+    </form>
+</div>
+<br>
+<div>
+    <form method="get" action="/data_prev">
+        <button class="btn btn-primary" type="submit">Add Previous Data</button>
+    </form>
+</div>
+
+{% endblock %}

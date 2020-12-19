@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Remove Data
+{% endblock %}
+
+{% block main %}
+<h1>Confirm Deletion of Entries?</h1>
+<br>
+<form method="post" action="/data_removed_temp">
+    <button type="submit" class="btn btn-outline-danger">Confirm</button>
+</form>
+
+<p>{{ goals }}</p>
+
+{% endblock %}

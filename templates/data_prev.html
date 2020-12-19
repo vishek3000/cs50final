@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Goal
+{% endblock %}
+
+{% block main %}
+<form action="/data_prev" method="post">
+    <div class="form-group">
+        <select class = "form-control" name = "goal">
+            <option disabled selected value>Goal</option>
+            <option value = "weight">Weight</option>
+            <option value = "bmi">Body Mass Index (BMI)</option>
+            <option value = "speed">Speed</option>
+            <option value = "money">Money</option>
+        </select>
+    </div>
+    <input autocomplete="off" autofocus class="form-control" name="entries" placeholder="# of Entries" type="number"  min ="1" required>
+    <div>
+        <br>
+        <button class="btn btn-primary" type="submit">Go!</button>
+    </div>
+</form>
+
+<div class = "customform">
+    {% block div %}{% endblock %}
+</div>
+{% endblock %}

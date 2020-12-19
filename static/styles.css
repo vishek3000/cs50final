@@ -1,0 +1,154 @@
+nav .navbar-brand
+{
+    /* size for brand */
+    font-size: xx-large;
+}
+
+/* colors for brand */
+nav .navbar-brand .blue
+{
+    color: #209CEE;
+}
+nav .navbar-brand .black
+{
+    color: #000000;
+}
+nav .navbar-brand .purple
+{
+    color: #9600a3;
+}
+
+main .form-control
+{
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+main
+{
+    /* scroll horizontally as needed */
+    overflow-x: auto;
+
+    /* center contents */
+    text-align: center;
+}
+
+main img
+{
+    /* constrain images on small screens */
+    max-width: 100%;
+}
+
+main table{
+    text-align: left;
+}
+
+.chart-container{
+    position: relative;
+    width: 60vw;
+    margin: auto;
+}
+
+.edit_header{
+    font: Montserrat;
+    font-weight: bold;
+    font-size: 48px;
+}
+
+
+.dash-bar-wrapper{
+    width: 100%;
+    height: auto;
+    /*border: 1px solid red; */
+    margin: auto;
+}
+
+@media(max-width: 599px){
+    .dash-bar-wrapper{
+        display: none;
+    }
+}
+
+.dash-wrapper{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    /*border: 1px solid green;  */
+}
+
+.dash-container-left{
+    width: 500px;
+    height: auto;
+   /* border: 1px solid black; */
+    display: block;
+    float: left;
+    margin: auto;
+    margin-top: 20px;
+}
+
+
+
+
+.dash-container-right{
+    width: 500px;
+    height: 100%;
+   /*border: 1px solid blue; */
+   display: block;
+    float: left;
+    margin: auto;
+    margin-top: 20px;
+
+}
+
+
+
+.summary-wrapper{
+    width: 90%;
+    margin: auto;
+    height: auto;
+    /* border: 1px solid blue;  */
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.summary-box{
+    width: 350px;
+    height: 300px;
+    background: #5090c7;
+    border-radius: 20px;
+    display: block;
+    float: left;
+    margin: auto;
+    margin-top: 15px;
+    padding: 10px;
+    color: white
+}
+
+@media(max-width: 599px){
+    .dash-bar-wrapper{
+        display: none;
+    }
+    
+    .dash-container-left{
+        width: 100%;
+    }
+    .dash-container-right{
+        width: 100%;
+    }
+    
+    .summary-box{
+        height: auto;
+    }
+    
+}
+
+
+/* Targets */
+main table{
+    text-align: left;
+}
+
+

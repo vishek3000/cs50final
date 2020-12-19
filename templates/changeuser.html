@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Change Password
+{% endblock %}
+
+{% block main %}
+    <form action="/changeuser" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="newuser" placeholder="New Username" type="text" required>
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="newuser_again" placeholder="Confirm New Username" type="text" required>
+        </div>
+        <button class="btn btn-primary" type="submit">Confirm Change Username</button>
+    </form>
+{% endblock %}

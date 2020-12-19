@@ -1,0 +1,18 @@
+{% extends "data_prev.html" %}
+
+{% block title %}
+    Add Goal
+{% endblock %}
+
+{% block div %}
+<br><br>
+<form action="/formaddon_old" method="post">
+    <div class="form-group">
+{% for entry in entries %}
+        <input autocomplete="off" autofocus class="form-control" name="value{{entry}}" placeholder="{{string}}" type="number" step = "0.01" min = "0.01" required>
+        <input autocomplete="off" autofocus class="form-control" name="date{{entry}}" placeholder="Date" type="date" required>
+        <br><br>
+{% endfor %}
+<button class="btn btn-primary" type="submit">Submit</button>
+</form>
+{% endblock %}

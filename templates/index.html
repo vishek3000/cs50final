@@ -1,0 +1,126 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+
+{% block main %}
+<h1>Welcome, {{username}}!</h1>
+    <div>
+        <span>Registered user since {{date}}</span>
+    </div>
+{% if nodata == True %}
+<br><br><br>
+<h2>Once you Enter all of Your Goals & Data,</h2>
+<h2>Your Summary Chart Will Show up Here.</h2>
+
+{% elif nodata == False %}
+<div class = "chart-container">
+    <canvas id="chart" style = "width: 100vw; height: 100vh"></canvas>
+</div>
+<br>
+<h2>Change Chart</h2>
+<form action="/" method="post">
+    <div class="form-group">
+        <select class = "form-control" name = "goal">
+            <option disabled selected value>Goal</option>
+            <option value = "weight">Weight</option>
+            <option value = "bmi">Body Mass Index (BMI)</option>
+            <option value = "speed">Speed</option>
+            <option value = "money">Money</option>
+        </select>
+    </div>
+    <button class="btn btn-primary" type="submit">Go!</button>
+</form>
+
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+
+<script>
+    let values = JSON.parse('{{ values | tojson }}');
+    let dates = JSON.parse('{{ dates | tojson }}');
+    let target = JSON.parse('{{ target | tojson }}');
+    let goal = JSON.parse('{{ goal | tojson }}');
+    let label = JSON.parse('{{ label | tojson }}');
+
+    var ctx = document.getElementById('chart');
+
+    Chart.defaults.global.elements.point.pointStyle = 'rectRot';
+    Chart.defaults.global.elements.point.radius = 6;
+
+    var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: dates,
+        datasets: [{
+            label: label,
+            data: values /*[12, 19, 3, 5, 2, 3] */,
+            fill: false,
+            backgroundColor: 'rgba(110, 110, 110, 0.7)',
+            borderColor: 'rgba(32, 156, 238, 0.5)',
+            borderWidth: 3,
+            pointBackgroundColor: 'rgba(0,0,0,0.7)'
+        },
+        {
+            label: 'Target',
+            data: target,
+            fill: false,
+            backgroundColor: 'rgba(110, 110, 110, 0.7)',
+            borderColor: 'rgba(150, 0, 163, 0.7)',
+            borderWidth: 4,
+            pointRadius: 0
+        }
+
+
+        ]
+    },
+    options: {
+        scales: {
+
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                },
+                    scaleLabel: {
+                    display: true,
+                    labelString: label,
+                    fontSize: 14,
+                    fontStyle: "bold"
+                                    },
+            }],
+
+            xAxes: [{
+
+                scaleLabel: {
+                display: true,
+                labelString: "Date [yyyy-mm-dd]",
+                fontSize: 14,
+                fontStyle: "bold"}
+
+            }]
+        },
+
+        legend:{
+         display: false
+        },
+
+        title:{
+        display: true,
+        text: `${goal} Tracker`,
+        fontColor: "#333",
+        fontSize: 20,
+        padding: 20
+        },
+    }
+
+});
+
+    //console.log(data.replace(/[^a-zA-Z 0-9]/g, ""));
+    //console.log(data[0]);
+    //console.log(weights);
+    //console.log(target);
+
+</script>
+{% endif %}
+{% endblock %}
+

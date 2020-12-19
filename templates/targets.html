@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Targets
+{% endblock %}
+
+{% block main %}
+<h1>Set your targets, {{username}}.</h1>
+
+<table class = "table table-striped">
+    {% if length == 0 %}
+    <h2>You currently don't have any entries!</h2>
+    <p>Once you enter them, they'll show up here.</p>
+
+    {% elif length > 0 %}
+    <thead>
+        <tr>
+            <th>Goal</th>
+            <th>Target</th>
+            <th>Date Entered</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in rows %}
+        <tr>
+            <td>{{ row['goal'] }}</td>
+            <td>{{ row['value'] }}</td>
+            <td>{{ row['date'] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+<br>
+<br>
+<h4>Add/Update Target</h4>
+<form action="/targets" method="post">
+    <div class="form-group">
+        <select class = "form-control" name = "target" required>
+            <option disabled selected value>Target</option>
+            <option value = "weight">Weight [lbs]</option>
+            <option value = "bmi">Body Mass Index (BMI)</option>
+            <option value = "speed">Speed [m/s]</option>
+            <option value = "money">Money [$ CAD]</option>
+        </select>
+    </div>
+    <div class="form-group">
+    <input autocomplete="off" autofocus class="form-control" name="value" placeholder="Enter Value" type="number" step ="0.01" min ="0" required>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit!</button>
+</form>
+
+{% endblock %}

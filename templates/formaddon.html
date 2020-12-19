@@ -1,0 +1,32 @@
+{% extends "addgoal.html" %}
+
+{% block title %}
+    Add Goal
+{% endblock %}
+
+{% block div %}
+<br>
+<br>
+<form action="/formaddon" method="post">
+    <div class="form-group">
+{% if goal == 'weight' %}
+        <input autocomplete="off" autofocus class="form-control" name="value" placeholder="Current Weight [lbs]" step = "0.01" min = "0" type="number">
+    </div>
+     <button class="btn btn-primary" type="submit">Submit</button>
+{% elif goal == 'bmi' %}
+        <input autocomplete="off" autofocus class="form-control" name="value" placeholder="Current BMI [m/h^2]" step = "0.01" min = "0" type="number">
+    </div>
+     <button class="btn btn-primary" type="submit">Submit</button>
+{% elif goal == 'speed' %}
+        <input autocomplete="off" autofocus class="form-control" name="value" placeholder="Current Speed [m/s]" step = "0.01" min = "0" type="number">
+    </div>
+     <button class="btn btn-primary" type="submit">Submit</button>
+{% elif goal == 'money' %}
+        <input autocomplete="off" autofocus class="form-control" name="value" placeholder="$ Saved [$ CAD]" step = "0.01" min = "0" type="number">
+    </div>
+     <button class="btn btn-primary" type="submit">Submit</button>
+{% endif %}
+</form>
+
+{% endblock %}
+

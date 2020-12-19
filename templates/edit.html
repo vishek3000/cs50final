@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit Profile
+{% endblock %}
+
+{% block main %}
+
+    <span class = "edit_header">{{username}}'s Information</span>
+    <br>
+    <br>
+    <div>
+        <form method="get" action="/changepw">
+            <button class="btn btn-primary" type="submit">Update Password</button>
+        </form>
+    </div>
+    <br>
+    <div>
+        <form method="get" action="/changeuser">
+            <button class="btn btn-primary" type="submit">Update Username</button>
+        </form>
+    </div>
+
+{% endblock %}

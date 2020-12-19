@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Remove Data
+{% endblock %}
+
+{% block main %}
+<h1>Remove Data.</h1>
+<form action="/data_remove" method="post" required>
+    <div class="form-group">
+        <select class = "form-control" name = "goal">
+            <option disabled selected value>Goal</option>
+            <option value = "weight">Weight</option>
+            <option value = "bmi">Body Mass Index (BMI)</option>
+            <option value = "speed">Speed</option>
+            <option value = "money">Money</option>
+        </select>
+    <button class="btn btn-primary" type="submit">Go!</button>
+    </div>
+</form>
+{% if get == False %}
+    <br>
+<table class = "table table-striped">
+    {% if length == 0 %}
+    <h2>You currently don't have any {{goal}} entries!</h2>
+    <p>Once you enter them, they'll show up here.</p>
+
+    {% elif length > 0 %}
+    <thead>
+        <tr>
+            <th>Goal</th>
+            <th>Value</th>
+            <th>Date Entered</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in rows %}
+        <tr>
+            <td>{{ row['goal'] }}</td>
+            <td>{{ row['value'] }}</td>
+            <td>{{ row['date'] }}</td>
+            <td><input type="checkbox" value = "{{ loop.index }}" name = "value"></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<form method="get" action="/data_removed/">
+    <button onclick="myFunction()" type="submit" class="btn btn-outline-danger" id = "deletor">Delete</button>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#deletor').click(function(){
+            var values = [];
+            $.each($("input[name='value']:checked"), function(){
+                values.push($(this).val());
+            });
+            //alert("The values are: " + values.join(", "));
+            $.ajax({
+            url: '/data_removed/',
+            type: "GET",
+            data: {valueList: JSON.stringify(values)},
+            success: function(){
+            alert("Are you sure you want to delete these entries?\n\n" + this.url);
+            window.location.replace(this.url);
+  }
+});
+        });
+    });
+</script>
+{% endif %}
+{% endif %}
+{% endblock %}
